@@ -1,6 +1,8 @@
 .card {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   background-color: rgb(60, 169, 252);
   border-radius: 10px;
   padding: 10px;
@@ -8,39 +10,69 @@
   transition: 0.3s;
   cursor: pointer;
 
+  .city_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+  }
+
+  .city {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 70px;
+    font-size: 36px;
+    color: white;
+  }
+
   .day {
     margin-bottom: 7px;
-    font-size: 18px;
-    color: black;
+    font-size: 24px;
+    color: white;
   }
 
   .day__info {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 12px;
-    color: black;
+    color: white;
   }
 
   .img {
-    margin-bottom: 12px;
+    margin-bottom: 32px;
   }
 
   .temp__day {
     font-size: 18px;
-    color: black;
+    color: white;
   }
 
   .temp__night {
-    font-size: 13px;
-    color: black;
-    margin-bottom: 6px;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 24px;
   }
 
   .info {
-    font-size: 13px;
-    color: black;
+    font-size: 16px;
+    color: white;
   }
 
-  // &:hover {
-  //   box-shadow: var(#{--card-shadow-default});
-  // }
+  .refresh {
+    background: #0877ee;
+    border-radius: 20px;
+    width: 60%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
 }
