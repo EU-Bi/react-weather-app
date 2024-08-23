@@ -18,7 +18,7 @@ const day = {
 	info: "Облачно",
 };
 
-export const Home = () => {
+export const Home: React.FC = () => {
 	const cities = useAppSelector((state) => state.cities.cities);
 	const dispatch = useAppDispatch();
 	const [searchValue, setSearchValue] = useState("");
