@@ -40,12 +40,13 @@ export const Home = () => {
 	};
 
 	const handleClick = (city: string) => {
-		dispatch(addCity(city));
+		if (cities.includes(city)) {
+			alert(`${city} is already in your list`);
+		} else {
+			dispatch(addCity(city));
+			setSearchValue("");
+		}
 	};
-
-	useEffect(() => {
-		console.log(cities);
-	}, [cities]);
 
 	return (
 		<div className={styles.container}>

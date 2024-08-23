@@ -13,44 +13,42 @@ type Props = {
 
 export const Card = memo(function Card({ city }: Props) {
 	const [weather, setWeather] = useState<Weather>({} as Weather);
-	useEffect(() => {
-		axios
-			.get(
-				`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`,
-			)
-			.then((res) => setWeather(res.data));
-	}, [city]);
-	const day = {
-		city: "Киев",
+	const [loading, setLoading] = useState(false);
 
-		day: "Сегодня",
-		day_info: "28 авг",
-		time: "18:00",
-		icon_id: "sun",
-		temp_day: "+18",
-		temp_night: "+15",
-		info: "Облачно",
-	};
-	return (
+	useEffect(() => {
+		if (!loading) {
+			axios
+				.get(
+					`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`,
+				)
+				.then((res) => {
+					setWeather(res.data);
+					setLoading(true);
+				});
+		}
+	}, [city, loading]);
+
+	return !loading && weather ? (
 		<div className={styles.card}>
-			<Link to={"/city"} className={styles.city_wrapper}>
+			<div className={styles.temp__day}>Loading ...</div>
+		</div>
+	) : (
+		<div className={styles.card}>
+			<Link to={"/city"} state={{ weather }} className={styles.city_wrapper}>
 				<div className={styles.city}>
 					<CiLocationOn size={30} color="white" />
 					{city}
 				</div>
-				{/* <div className={styles.img}>
-					<GlobalSvgSelector id={weather.weather[0].icon} />
-				</div> */}
-				{/* <div className={styles.day__info}>{weather.main.}</div> */}
+				<div className={styles.city__info}>{weather.sys.country}</div>
 				<div className={styles.temp__day}>
-					{Math.round(weather.main.temp_max - 273)}
+					{Math.round(weather.main.temp_max - 273)}°C
 				</div>
 				<div className={styles.temp__night}>
-					{Math.round(weather.main.temp_min - 273)}
+					{Math.round(weather.main.temp_min - 273)}°C
 				</div>
 				<div className={styles.info}>{weather.weather[0].description}</div>
 			</Link>
-			<div className={styles.refresh}>
+			<div className={styles.refresh} onClick={() => setLoading(false)}>
 				<LuRefreshCcw size={30} color="white" />
 			</div>
 		</div>

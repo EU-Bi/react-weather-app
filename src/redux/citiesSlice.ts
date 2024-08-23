@@ -5,7 +5,10 @@ interface CitiesState {
 }
 
 const initialState: CitiesState = {
-	cities: [],
+	cities:
+		localStorage.getItem("cities") ?? "[]"
+			? JSON.parse(localStorage.getItem("cities") ?? "[]")
+			: [],
 };
 
 export const citiesSlice = createSlice({
@@ -15,10 +18,13 @@ export const citiesSlice = createSlice({
 		addCity: (state, action: PayloadAction<string>) => {
 			state.cities.push(action.payload);
 		},
+		deleteCity: (state, action: PayloadAction<string>) => {
+			state.cities = state.cities.filter((city) => city !== action.payload);
+		},
 	},
 });
 
-export const { addCity } = citiesSlice.actions;
+export const { addCity, deleteCity } = citiesSlice.actions;
 
 export const getCities = (state: { cities: CitiesState }) => {
 	return state.cities.cities;

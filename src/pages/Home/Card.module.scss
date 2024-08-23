@@ -24,20 +24,14 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
-    margin-bottom: 70px;
+    margin-bottom: 12px;
     font-size: 36px;
     color: white;
   }
 
-  .day {
-    margin-bottom: 7px;
+  .city__info {
     font-size: 24px;
-    color: white;
-  }
-
-  .day__info {
-    font-size: 18px;
-    margin-bottom: 12px;
+    margin-bottom: 70px;
     color: white;
   }
 
@@ -46,18 +40,18 @@
   }
 
   .temp__day {
-    font-size: 18px;
+    font-size: 56px;
     color: white;
   }
 
   .temp__night {
-    font-size: 18px;
+    font-size: 48px;
     color: white;
     margin-bottom: 24px;
   }
 
   .info {
-    font-size: 16px;
+    font-size: 32px;
     color: white;
   }
 
